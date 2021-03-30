@@ -1,0 +1,246 @@
+    <!-- Linking the stylesheet -->
+    <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Linking the Jquery script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+  function executeQuery() {
+    var query = "";
+    query = document.getElementById("id_q_large").value;
+    window.location.replace("{% url 'account:search_result' %}?q=" + query);
+    return false;
+  }
+</script>
+
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+<style>
+/*-------------Reset-------------*/
+button {
+  background: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+}
+button:focus,
+input:focus {
+  outline: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+/*-------------Layout-------------*/
+body {
+  line-height: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+/*-------------Helpers-------------*/
+.skew {
+  transform: skew(-20deg);
+}
+
+.un-skew {
+  transform: skew(20deg);
+}
+
+/*-------------Nav-------------*/
+#nav-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#nav {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  font-family: "Saira Semi Condensed", sans-serif;
+  height: 4em;
+  overflow: hidden;
+}
+#nav.nav-visible {
+  height: 100%;
+  overflow: auto;
+}
+
+.nav {
+  display: flex;
+  height: 4em;
+  line-height: 4em;
+  flex-grow: 1;
+}
+
+.nav-link,
+.logo {
+  padding: 0 1em;
+}
+
+span.gradient {
+  background: #f857a8;
+  background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
+  background: linear-gradient(45deg, #f857a8, #ff5858);
+  padding: 0 1em;
+  position: relative;
+  right: 1em;
+  margin-right: auto;
+}
+
+h1.logo {
+  font-weight: 300;
+  font-size: 1.75em;
+  line-height: 0.75em;
+  color: #fff;
+}
+
+h1.logo a, a:active, a:hover, a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  text-align: center;
+  border-top: 0.5px solid #ddd;
+}
+
+a:link, a:visited, a:active {
+  text-decoration: none;
+  color: #f857a8;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.btn-nav {
+  color: #f857a8;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+@media (min-width: 800px) {
+  #nav-wrapper {
+    overflow: hidden;
+  }
+
+  #nav {
+    overflow: hidden;
+    flex-direction: row;
+  }
+
+  .nav-link {
+    border-top: none;
+  }
+
+  .right {
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+    left: 1.5em;
+    height: auto;
+  }
+
+  .btn-nav {
+    display: none;
+  }
+
+  .nav a:link.active, a:visited.active, a:active.active {
+    background: #f857a8;
+    background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
+    background: linear-gradient(45deg, #f857a8, #ff5858);
+    color: #fff;
+  }
+
+  .nav-link-span {
+    transform: skew(20deg);
+    display: inline-block;
+  }
+
+  .nav-link {
+    transform: skew(-20deg);
+    color: #777;
+    text-decoration: none;
+  }
+  .nav-link:last-child {
+    padding-right: 3em;
+  }
+
+  a:hover.nav-link:not(.active) {
+    color: white;
+    background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
+    background: linear-gradient(45deg, #f857a8, #ff5858);
+  }
+}
+
+    nav .search-bar input[type = "text"] {
+    border-radius: 25px;
+    width: 220px;
+    height: 31px;
+    font-family: sans-serif;
+    font-size: medium;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-left: 600px;
+    margin-top : 10px;
+    padding-left: 15px;
+  }
+</style>
+
+  <header id="nav-wrapper">
+    <nav id="nav">
+      <div class="nav left">
+        <span class="gradient skew"><h1 class="logo un-skew"><a href="account:home_page">ConnectUs</a></h1></span>
+        <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+      </div>
+                {% if request.user.is_authenticated %}
+
+            <form
+      class="search-bar justify-content-start"
+      onsubmit="return executeQuery();"
+    >
+      <input
+        type="text"
+        class="form-control"
+        name="q"
+        id="id_q_large"
+        placeholder="Search..."
+        autofocus
+      />
+    </form>
+                        {% endif %}
+
+
+      <div class="nav right">
+          {% if request.user.is_authenticated %}
+                <a href="{% url 'account:friend_list' %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Friends</span></span></a>
+                <a href="{% url 'account:profile_page' user_id=request.user.id %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Profile</span></span></a>
+                <a href="{% url 'account:logout' %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
+            {% else %}
+                <a href="{% url 'account:register' %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Signup</span></span></a>
+                <a href="{% url 'account:login' %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Login</span></span></a>
+            {% endif %}
+      </div>
+    </nav>
+  </header>
