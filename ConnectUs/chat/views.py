@@ -6,6 +6,7 @@ import json
 def index(request):
     return render(request, 'chat/index.html', {})
 
+
 @login_required(login_url='account:login')
 def room(request, room_name):
     return render(request, 'chat/room.html', {

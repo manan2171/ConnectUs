@@ -234,7 +234,6 @@ a:hover {
 
       <div class="nav right">
           {% if request.user.is_authenticated %}
-                <a href="{% url 'account:friend_list' %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Friends</span></span></a>
                 <a href="{% url 'account:profile_page' user_id=request.user.id %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Profile</span></span></a>
                 <a href="{% url 'account:logout' %}" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
             {% else %}

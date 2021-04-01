@@ -60,9 +60,3 @@ class Account(AbstractUser):
     def has_module_perm(self, app_label):
         return True
 
-
-class friend(models.Model):
-    user1 = models.OneToOneField(Account, on_delete=models.CASCADE , related_name='user1' , default=None)
-    user2 = models.OneToOneField(Account,on_delete=models.CASCADE , related_name='user2', default=None)
-    stats = models.BooleanField(default=False)
-

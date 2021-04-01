@@ -15,11 +15,3 @@ class AccountAdmin(UserAdmin):
 
 
 admin.site.register(Account, AccountAdmin)
-
-
-class friendAdmin(admin.ModelAdmin):
-    class Meta:
-        model = friend
-
-
-admin.site.register(friend, friendAdmin)

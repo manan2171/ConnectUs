@@ -9,6 +9,5 @@ urlpatterns = [
     path('profile/<user_id>/', profile_view , name = "profile_page"),
     path('search_result/',search_view_result, name = "search_result"),
     path('profile/<user_id>/edit',edit_account_view, name = "edit_profile"),
-    path('friend_list/', FriendList, name="friend_list"),
 
 ]

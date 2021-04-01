@@ -159,14 +159,3 @@ def edit_account_view(request, *args, **kwargs):
         context['form'] = form
     return render(request, "account/edit_profile.html", context)
 
-
-@login_required(login_url='account:login')
-def FriendList(request, *args, **kwargs):
-    context = {}
-    user = request.user
-    search_result = friend.objects.filter(user1=user, stats=True)
-    accounts = []
-    for account in search_result:
-        accounts.append((account, False))
-    context['accounts'] = accounts
-    return render(request, 'friend/friend_list.html', context)
